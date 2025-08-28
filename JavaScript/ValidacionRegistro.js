@@ -27,6 +27,7 @@ form.addEventListener("submit", function(event){
     const regexApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,30}$/;
     const regexEmail = /\S+@\S+\.\S+/;
     const soloNumeros = /^\d+$/;
+    const fechahoy = new Date()
 
     let formValido = true;
 
@@ -65,8 +66,9 @@ form.addEventListener("submit", function(event){
 
     // VALIDACIÓN EDAD
     if(Edad === ""){
+        if else(Edad < fechahoy){
         errorEdad.innerText = "Este campo es obligatorio";
-        formValido = false;
+        formValido = false;}
     } else {
         errorEdad.innerText = "";
     }
