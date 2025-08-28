@@ -22,12 +22,12 @@ form.addEventListener("submit", function(event){
     const errorTerminos = document.getElementById("error-Termino");
     const errorExito = document.getElementById("registro-exitoso");
 
+
     // Regex
     const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,30}$/;
     const regexApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,30}$/;
     const regexEmail = /\S+@\S+\.\S+/;
     const soloNumeros = /^\d+$/;
-    const fechahoy = new Date()
 
     let formValido = true;
 
@@ -65,14 +65,16 @@ form.addEventListener("submit", function(event){
     }
 
     // VALIDACIÓN EDAD
-    if(Edad === ""){
-        if else(Edad < fechahoy){
-        errorEdad.innerText = "Este campo es obligatorio";
-        formValido = false;}
+   if (Edad === "") {
+        setError(errorEdad, "Este campo es obligatorio");
+        formValido = false;
     } else {
-        errorEdad.innerText = "";
-    }
-
+        const fechaIngresada = new Date(Edad);
+        if (isNaN(fechaIngresada.getTime())) {
+            setError(errorEdad, "Ingrese una fecha válida");
+            formValido = false;
+        }
+        
     // VALIDACIÓN TELÉFONO
     if(Telefono === ""){
         errorTelefono.innerText = "Este campo es obligatorio";
